@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativelayout_intro_bottom"
+        android:layout_margin="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearlayout_sign_in_field"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_above="@+id/linearlayout_sign_in"
+            android:background="@drawable/sign_in_password"
+            android:gravity="left|center"
+            android:orientation="vertical"
+            android:onClick="onSignInClick">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="아이디"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="textPassword"
+                android:hint="비밀번호"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
+            android:layout_above="@+id/button_sign_in_kakao"
+            android:background="@drawable/sign_in_button"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:onClick="onSignInClick">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="로그인"
+                android:textSize="16dp"
+                app:cornerRadius="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/button_sign_in_kakao"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_above="@+id/button_sign_in_google"
+            android:background="@drawable/sign_in_button_kakao"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:onClick="onSignInClick">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/sign_in_kakao_symbol" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/kakao_label"
+                android:backgroundTint="@color/twitter"
+                android:text="카카오로 계속하기"
+                android:textSize="16dp"
+                app:cornerRadius="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/button_sign_in_google"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/sign_in_button_google"
+            android:gravity="center"
+            android:onClick="onSignInClick">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/sign_in_google_symbol" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="구글로 계속하기　"
+                android:textColor="@color/google_label"
+                android:fontFamily="@font/notosans_regular"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:outlineProvider="none" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
