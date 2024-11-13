@@ -10,6 +10,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class SignInActivity extends AppCompatActivity {
 
+    ActivitySignInBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,11 @@ public class SignInActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        binding = ActivitySignInBinding.inflate(this);
+
     }
+    
+
     
 }
