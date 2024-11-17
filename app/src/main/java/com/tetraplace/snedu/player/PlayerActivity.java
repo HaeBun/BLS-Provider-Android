@@ -3,25 +3,39 @@ package com.tetraplace.snedu.player;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowInsets;
+import android.view.WindowInsetsController;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.tetraplace.snedu.R;
+import com.tetraplace.snedu.databinding.ActivityMainBinding;
+import com.tetraplace.snedu.databinding.ActivityPlayerBinding;
 import com.tetraplace.snedu.util.PlayerInterface;
 
 public class PlayerActivity extends AppCompatActivity {
 
-    private WebView webView;
+    public WebView webView;
+    public ActivityPlayerBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player);
+        binding = ActivityPlayerBinding.inflate(getLayoutInflater());
+        EdgeToEdge.enable(this);
+        setContentView(binding.getRoot());
 
-        webView = findViewById(R.id.youtube_web_view);
+        setDisplaySetting();
+
+        webView = binding.webviewPlayer;
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient() {
             private View customView;
@@ -73,8 +87,28 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
 
-        webView.loadDataWithBaseURL("https://www.youtube.com", getHtmlData("VDBBCLwE1Ww", 30), "text/html", "UTF-8", null);
+        webView.loadDataWithBaseURL("https://www.youtube.com", getHtmlData("cf8Mm1Dyi7U", 0), "text/html", "UTF-8", null);
         webView.addJavascriptInterface(new PlayerInterface(this), "Android");
+    }
+
+    public void setDisplaySetting() {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity_player), (view, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            view.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+            return WindowInsetsCompat.CONSUMED;
+        });
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            WindowInsetsController insetsController = getWindow().getInsetsController();
+            if (insetsController != null) {
+                // 상태 표시줄과 네비게이션 바 숨기기
+                insetsController.hide(WindowInsets.Type.statusBars() | WindowInsets.Type.navigationBars());
+                // 스와이프하여 네비게이션 바 올림
+                insetsController.setSystemBarsBehavior(WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+            }
+        }
+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
     }
 
     private String getHtmlData(String videoId, int startSeconds) {
@@ -89,15 +123,16 @@ public class PlayerActivity extends AppCompatActivity {
                 "  .player-container {\n" +
                 "    position: relative;\n" +
                 "    width: 100%;\n" +
-                "    padding-bottom: 56.25%; /* 16:9 비율 유지 */\n" +
-                "    height: 0;\n" +
+                "    height: 100%;\n" +
+                "    aspect-ratio: 16 / 9;\n" +
                 "  }\n" +
                 "  .player-container iframe {\n" +
-                "    position: absolute;\n" +
+                "    position: relative;\n" +
                 "    top: 0;\n" +
                 "    left: 0;\n" +
-                "    width: 100%;\n" +
+                "    width: 80;\n" +
                 "    height: 100%;\n" +
+                "    aspect-ratio: 16 / 9;\n" +
                 "  }\n" +
                 "</style>\n" +
                 "</head>\n" +
@@ -106,7 +141,7 @@ public class PlayerActivity extends AppCompatActivity {
                 "<iframe id=\"player\" \n" +
                 "        src=\"https://www.youtube.com/embed/" + videoId + "?autoplay=0&controls=1&showinfo=0&modestbranding=1&rel=0&fs=1&enablejsapi=1&start=" + startSeconds + "\" \n" +
                 "        frameborder=\"0\" \n" +
-                "        allowfullscreen>\n" +
+                "        >\n" +
                 "</iframe>\n" +
                 "</div>\n" +
                 "<script>\n" +
