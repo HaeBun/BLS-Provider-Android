@@ -1,11 +1,9 @@
-
-
+package com.tetraplace.snedu.main;
 
 public class MainModel {
     private int userId;
     private String userIDToken;
     
-
     public MainModel(int userId, String userIDToken) {
         setUserId(userId);
         setUserIDToken(userIDToken);

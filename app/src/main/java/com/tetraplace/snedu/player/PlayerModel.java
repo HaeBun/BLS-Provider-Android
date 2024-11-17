@@ -1,27 +1,27 @@
+package com.tetraplace.snedu.player;
+
 public class PlayerModel {
     private String videoID;
     private String userIDToken;
-    
 
-    public MainModel(int userId, String userIDToken) {
-        setUserId(userId);
+    public PlayerModel(String videoID, String userIDToken) {
+        setVideoID(videoID);
         setUserIDToken(userIDToken);
     }
 
-    public int getUserId() {
-        return this.userId;
+    public String getUserIDToken() {
+        return userIDToken;
     }
 
-    public String userIDToken() {
-        return this.userIDToken; 
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public String getVideoID() {
+        return videoID;
     }
 
     public void setUserIDToken(String userIDToken) {
         this.userIDToken = userIDToken;
     }
 
+    public void setVideoID(String videoID) {
+        this.videoID = videoID;
+    }
 }

@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.BLSProvider" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.SNEDU" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.BLSProvider" parent="Base.Theme.BLSProvider" />
+    <style name="Theme.SNEDU" parent="Base.Theme.SNEDU" />
 </resources>
