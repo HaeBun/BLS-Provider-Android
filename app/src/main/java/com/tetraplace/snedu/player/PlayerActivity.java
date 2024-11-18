@@ -122,7 +122,7 @@ public class PlayerActivity extends AppCompatActivity {
                 "  .player-container {\n" +
                 "    position: relative;\n" +
                 "    width: 100%;\n" +
-                "    height: 100%;\n" +
+                "    height: 0%;\n" +
                 "    aspect-ratio: 16 / 9;\n" +
                 "  }\n" +
                 "  .player-container iframe {\n" +
