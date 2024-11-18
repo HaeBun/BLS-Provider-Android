@@ -17,7 +17,6 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.tetraplace.snedu.R;
-import com.tetraplace.snedu.databinding.ActivityMainBinding;
 import com.tetraplace.snedu.databinding.ActivityPlayerBinding;
 import com.tetraplace.snedu.util.PlayerInterface;
 
