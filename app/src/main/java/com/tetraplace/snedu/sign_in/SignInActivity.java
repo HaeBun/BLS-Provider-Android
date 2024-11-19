@@ -138,7 +138,7 @@ public class SignInActivity extends AppCompatActivity {
             finish(); // 현재 Activity 종료 (선택 사항)
         } else {
             // 로그인 실패 시 처리
-            Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show();
         }
     }
 }

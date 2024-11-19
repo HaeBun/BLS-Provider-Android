@@ -39,7 +39,6 @@ public class PlayerActivity extends AppCompatActivity {
         webView.setWebChromeClient(new WebChromeClient() {
             private View customView;
             private WebChromeClient.CustomViewCallback customViewCallback;
-            private int originalOrientation;
             private int originalSystemUiVisibility;
 
             @Override
@@ -52,26 +51,10 @@ public class PlayerActivity extends AppCompatActivity {
 
                 customView = view;
                 originalSystemUiVisibility = getWindow().getDecorView().getSystemUiVisibility();
-                originalOrientation = getRequestedOrientation();
 
                 customViewCallback = callback;
                 ((FrameLayout) getWindow().getDecorView()).addView(customView, new FrameLayout.LayoutParams(-1, -1));
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            }
-
-            // 화면이 모두 로딩될 때 까지 변화를 감지함
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                super.onProgressChanged(view, newProgress);
-
-                if (newProgress == 100) {
-                    // 페이지 로딩 완료 (영상 재생 시작 또는 재개)
-                    // 필요한 동작 수행 (예: 로딩 표시 숨기기)
-                } else if (newProgress < 100) {
-                    // 페이지 로딩 중 (영상 버퍼링 또는 멈춤)
-                    // 필요한 동작 수행 (예: 로딩 표시 보이기)
-                }
             }
 
             @Override
@@ -80,7 +63,6 @@ public class PlayerActivity extends AppCompatActivity {
                 ((FrameLayout) getWindow().getDecorView()).removeView(customView);
                 customView = null;
                 getWindow().getDecorView().setSystemUiVisibility(originalSystemUiVisibility);
-                setRequestedOrientation(originalOrientation);
                 customViewCallback.onCustomViewHidden();
                 customViewCallback = null;
             }
@@ -122,16 +104,16 @@ public class PlayerActivity extends AppCompatActivity {
                 "  .player-container {\n" +
                 "    position: relative;\n" +
                 "    width: 100%;\n" +
-                "    height: 0%;\n" +
-                "    aspect-ratio: 16 / 9;\n" +
+                "    padding-bottom: 56.25%; /* 16:9 비율 유지 */\n" +
+                "    height: 0;\n" +
                 "  }\n" +
                 "  .player-container iframe {\n" +
-                "    position: relative;\n" +
+                "    position: absolute;\n" +
                 "    top: 0;\n" +
                 "    left: 0;\n" +
-                "    width: 80;\n" +
+                "    width: 100%;\n" +
                 "    height: 100%;\n" +
-                "    aspect-ratio: 16 / 9;\n" +
+                "    object-fit: contain; \n" +
                 "  }\n" +
                 "</style>\n" +
                 "</head>\n" +
@@ -140,7 +122,7 @@ public class PlayerActivity extends AppCompatActivity {
                 "<iframe id=\"player\" \n" +
                 "        src=\"https://www.youtube.com/embed/" + videoId + "?autoplay=0&controls=1&showinfo=0&modestbranding=1&rel=0&fs=1&enablejsapi=1&start=" + startSeconds + "\" \n" +
                 "        frameborder=\"0\" \n" +
-                "        >\n" +
+                "        allowfullscreen>\n" +
                 "</iframe>\n" +
                 "</div>\n" +
                 "<script>\n" +
@@ -150,7 +132,7 @@ public class PlayerActivity extends AppCompatActivity {
                 "    player = new YT.Player('player', {\n" +
                 "      playerVars: { // playerVars 추가\n" +
                 "        autoplay: 0,\n" +
-                "        controls: 0,\n" +
+                "        controls: 1,\n" +
                 "        loop: 0,\n" +
                 "        modestbranding: 1,\n" +
                 "        rel: 0\n" +
@@ -183,7 +165,16 @@ public class PlayerActivity extends AppCompatActivity {
                 "        Android.onEnded();\n" +
                 "        break;\n" +
                 "      case YT.PlayerState.FULLSCREEN:\n" +
-                "        Android.onFullScreen(event.target.isFullscreen()); // 전체화면 상태 전달\n" +
+                "        Android.onFullScreen(false); // 전체화면 상태 전달\n" +
+                "\n" +
+                "        // 전체화면 모드일 때 화면 회전\n" +
+                "        if (event.target.isFullscreen()) {\n" +
+                "          // 가로 모드로 회전\n" +
+                "          screen.orientation.lock('landscape-primary');\n" +
+                "        } else {\n" +
+                "          // 세로 모드로 회전\n" +
+                "          screen.orientation.lock('portrait-primary');\n" +
+                "        }\n" +
                 "        break;\n" +
                 "    }\n" +
                 "  }\n" +
