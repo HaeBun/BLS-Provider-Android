@@ -1,10 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.gms.google-services")
 }
 
 android {
     namespace 'com.tetraplace.snedu'
     compileSdk 34
+
+    buildFeatures {
+        viewBinding = true
+    }
 
     defaultConfig {
         applicationId "com.tetraplace.snedu"
@@ -29,6 +34,12 @@ android {
 }
 
 dependencies {
+    implementation platform('com.google.firebase:firebase-bom:32.2.3')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-auth'
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+    implementation 'com.akexorcist:round-corner-progress-bar:2.2.1'
 
     implementation libs.appcompat
     implementation libs.material

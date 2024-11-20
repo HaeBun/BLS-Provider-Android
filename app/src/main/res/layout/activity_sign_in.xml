@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/sign_in"
+    android:id="@+id/activity_sign_in"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".sign_in.SignInActivity">
 
     <ImageView
         android:id="@+id/imageview_sign_in_logo"
@@ -32,23 +32,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/imageview_sign_in_logo"
-        app:layout_constraintStart_toEndOf="@id/imageview_sign_in_logo"
+        app:layout_constraintStart_toStartOf="@id/imageview_sign_in_logo_title"
+        app:layout_constraintEnd_toEndOf="@id/imageview_sign_in_logo_title"
         android:layout_marginStart="5dp"
         android:textSize="24sp"
         android:text="BLS-Provider" />
 
     <LinearLayout
-        android:id="@+id/button_sign_in_kakao"
+        android:id="@+id/linearlayout_sign_in_kakao"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="10dp"
-        android:layout_above="@+id/button_sign_in_google"
+        android:layout_above="@+id/linearlayout_sign_in_google"
         android:background="@drawable/sign_in_button_kakao"
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toTopOf="@id/button_sign_in_google">
+        app:layout_constraintBottom_toTopOf="@id/linearlayout_sign_in_google">
 
         <ImageView
             android:layout_width="18dp"
@@ -60,15 +61,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/kakao_label"
-            android:backgroundTint="@color/twitter"
             android:text="카카오로 계속하기"
             android:textSize="16dp"
             app:cornerRadius="8dp" />
     </LinearLayout>
 
-
     <LinearLayout
-        android:id="@+id/button_sign_in_google"
+        android:id="@+id/linearlayout_sign_in_google"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
@@ -76,7 +75,7 @@
         android:gravity="center"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">

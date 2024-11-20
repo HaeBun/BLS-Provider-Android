@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">BLS Provider</string>
+    <string name="app_name">SNEDU</string>
+
+    <string name="google_oauth_id">AIzaSyB3g9Zujj60ssXl9CULH7aW0jdJFMDT4gI</string>
 </resources>

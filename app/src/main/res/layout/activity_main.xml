@@ -2,115 +2,296 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".main.MainActivity">
 
-    <RelativeLayout
+    <View
+        android:id="@+id/view_main_tap"
         android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#4285F4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/imageview_main_logo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="4dp"
+        android:background="@drawable/main_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/logo_seoil_university"/>
+
+    <TextView
+        android:id="@+id/imageview_sign_in_logo_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/relativelayout_intro_bottom"
+        app:layout_constraintTop_toTopOf="@id/imageview_main_logo"
+        app:layout_constraintStart_toEndOf="@id/imageview_main_logo"
+        android:layout_marginStart="15dp"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:text="Student Nurse Education" />
+
+    <TextView
+        android:id="@+id/imageview_sign_in_logo_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/imageview_main_logo"
+        app:layout_constraintStart_toEndOf="@id/imageview_main_logo"
+        android:layout_marginStart="15dp"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:text="BLS-Provider 심폐소생술 교육 프로그램" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayout_main_status"
+        android:layout_width="0dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/main_status"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_main_tap">
+
+        <TextView
+            android:id="@+id/textview_main_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="학습 현황"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/textview_main_status_started_at_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintEnd_toStartOf="@id/textview_main_status_started_at_datetime"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="시작일"/>
+
+        <TextView
+            android:id="@+id/textview_main_status_started_at_datetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="2024-11-05"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="@id/textview_main_status_started_at_title"
+            app:layout_constraintBottom_toBottomOf="@id/textview_main_status_started_at_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="2024-11-05" />
+
+        <TextView
+            android:id="@+id/textview_main_status_started_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1일째"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/textview_main_status_started_at_datetime"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="1일째" />
+
+        <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+            android:id="@+id/rcprogressbar_main"
+            android:layout_width="0dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="-20dp"
+            app:rcMax="100"
+            app:rcProgress="67"
+            app:rcProgressColor="#EF5350"
+            app:rcBackgroundColor="@color/light_gray"
+            app:rcRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/constraintlayout_main_status_total"
+            app:layout_constraintTop_toTopOf="@id/constraintlayout_main_status_total" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintlayout_main_status_total"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/main_status_total"
+            app:layout_constraintTop_toBottomOf="@id/textview_main_status"
+            app:layout_constraintStart_toStartOf="parent" >
+
+            <TextView
+                android:id="@+id/textview_main_status_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="67%"
+                android:textColor="@android:color/white"
+                android:textSize="28sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayout_main_play"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/main_button_video"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toBottomOf="@id/constraintlayout_main_status"
+        app:layout_constraintBottom_toTopOf="@id/constraintlayout_main_history"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/constraintlayout_main_docs">
+
+        <ImageView
+            android:id="@+id/imageview_main_play"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="50dp"
+            android:src="@drawable/main_play"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:text="교육영상"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageview_main_play"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayout_main_docs"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/main_button_docs"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="@id/constraintlayout_main_play"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/constraintlayout_main_play" >
+
+        <ImageView
+            android:id="@+id/imageview_main_docs"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="50dp"
+            android:src="@drawable/main_docs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:text="기본소생술 자료"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageview_main_docs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayout_main_history"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/main_button_history"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toBottomOf="@id/constraintlayout_main_play"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/imageview_main_history"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="50dp"
+            android:src="@drawable/main_history"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:text="기록"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageview_main_history"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayout_main_settings"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_margin="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:background="@drawable/main_button_settings"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toBottomOf="@id/constraintlayout_main_docs"
+        app:layout_constraintStart_toEndOf="@id/constraintlayout_main_history"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
-            android:id="@+id/linearlayout_sign_in_field"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_above="@+id/linearlayout_sign_in"
-            android:background="@drawable/sign_in_password"
-            android:gravity="left|center"
-            android:orientation="vertical"
-            android:onClick="onSignInClick">
+        <ImageView
+            android:id="@+id/imageview_main_settings"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="50dp"
+            android:src="@drawable/main_settings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="아이디"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:text="내 페이지"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageview_main_settings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:inputType="textPassword"
-                android:hint="비밀번호"/>
-        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/linearlayout_sign_in"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="20dp"
-            android:layout_above="@+id/button_sign_in_kakao"
-            android:background="@drawable/sign_in_button"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:onClick="onSignInClick">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="로그인"
-                android:textSize="16dp"
-                app:cornerRadius="8dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/button_sign_in_kakao"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:layout_above="@+id/button_sign_in_google"
-            android:background="@drawable/sign_in_button_kakao"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:onClick="onSignInClick">
-
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginRight="8dp"
-                android:src="@drawable/sign_in_kakao_symbol" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/kakao_label"
-                android:backgroundTint="@color/twitter"
-                android:text="카카오로 계속하기"
-                android:textSize="16dp"
-                app:cornerRadius="8dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/button_sign_in_google"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/sign_in_button_google"
-            android:gravity="center"
-            android:onClick="onSignInClick">
-
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginRight="8dp"
-                android:src="@drawable/sign_in_google_symbol" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="구글로 계속하기　"
-                android:textColor="@color/google_label"
-                android:fontFamily="@font/notosans_regular"
-                android:gravity="center"
-                android:textSize="16dp"
-                android:outlineProvider="none" />
-        </LinearLayout>
-    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
